@@ -7,4 +7,8 @@ jobs:
       - name: my-step1
         run: docker images
       - name: my-step2
-        run: docker run hello-world
+        run: docker run --name hello  hello-world
+      - name: my-step3
+        run: docker ps -a
+      - name: my-step4
+        run: docker container rm hello
