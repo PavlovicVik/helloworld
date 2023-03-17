@@ -1,19 +1,1 @@
-1. install github cli
 
-2. install act (gh extension install nektos/gh-act)
-
-3. gh auth login (git token keresztul belep a githubra) (loginolva marad reboot utan is)
-
-4. git init (csak elso alkalomman) (abban a directoryban ahova toltsuk le a repokat)
-
-5. gh repo clone <repo name> (gh repo list - kimutassa)
-
-6. cd <repo> (belepunk a repoba amit clonoltunk)
-
-7. act (a repon belul futtasuk a github actiont)
-
-8. git pull (frissiti a reponkat)
-
-- delete repo: rm -fr <repo> 
-
-- Act futatasa repon kivul: act -W <repo>
