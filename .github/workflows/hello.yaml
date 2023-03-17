@@ -4,13 +4,13 @@ jobs:
   my-job:
     runs-on: self-hosted
     steps:
-      - name: my-step1
+      - name: list images
         run: docker images
-      - name: my-step2
+      - name: run image
         run: docker run --name hello  hello-world
-      - name: my-step3
+      - name: list containers
         run: docker ps -a
-      - name: my-step4
+      - name: remove container
         run: docker container rm hello
-      - name: my-step5
+      - name: list containers
         run: docker ps -a
