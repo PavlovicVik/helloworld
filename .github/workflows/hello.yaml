@@ -12,3 +12,5 @@ jobs:
         run: docker ps -a
       - name: my-step4
         run: docker container rm hello
+      - name: my-step5
+        run: docker ps -a
