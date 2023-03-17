@@ -4,5 +4,7 @@ jobs:
   my-job:
     runs-on: self-hosted
     steps:
-      - name: my-step
-        run: docker ps
+      - name: my-step1
+        run: docker images
+      - name: my-step2
+        run: docker run hello-world
