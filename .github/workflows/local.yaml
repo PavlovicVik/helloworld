@@ -10,3 +10,5 @@ jobs:
        run: sudo apt-get update &&
             sudo apt-get install docker-compose-plugin &&
             docker compose version
+     - name: Compose 
+       run: docker-compose -f docker-compose.yaml up -d
