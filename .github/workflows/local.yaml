@@ -4,9 +4,11 @@ jobs:
   docker_local_run:
     runs-on: self-hosted
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: list
-        run: ls
-      - name: compose
-        run: docker-compose up -d
+     - name: Checkout
+       uses: actions/checkout@v3
+     - name: Compose
+       uses: isbang/compose-action@v1.4.1
+       with:
+         compose-file: ./docker-compose.yml
+     
+   
