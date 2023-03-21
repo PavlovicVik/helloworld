@@ -6,8 +6,8 @@ jobs:
     steps:
       - name: list images
         run: docker images
-      - name: run image
-        run: docker run --name hello  hello-world
+      - name: docker compose
+        run: docker-compose.yaml
       - name: list containers
         run: docker ps -a
       - name: remove container
