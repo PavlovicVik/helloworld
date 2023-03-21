@@ -9,6 +9,6 @@ jobs:
      - name: Compose
        uses: isbang/compose-action@v1.4.1
        with:
-         compose-file: "./helloworld/docker-compose.yaml"
+         compose-file: "docker-compose.yaml"
      
    
