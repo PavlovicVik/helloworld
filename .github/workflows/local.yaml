@@ -12,4 +12,4 @@ jobs:
        run: docker pull aleksjej/armv7-docker-compose &&
             sudo chmod +x /usr/local/bin/docker-compose &&
      - name: Start containers
-       run: docker run f39e30ccd182 -f docker-compose.yml up -d --build
+       run: docker run -f docker-compose.yml f39e30ccd182
