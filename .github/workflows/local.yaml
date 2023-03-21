@@ -6,9 +6,7 @@ jobs:
     steps:
      - name: Checkout
        uses: actions/checkout@v3
-     - name: Compose
-       uses: isbang/compose-action@v1.4.1
-       with:
-         compose-file: "docker-compose.yaml"
+     - name: Start containers
+       run: docker-compose -f "docker-compose.yml" up -d 
      
    
