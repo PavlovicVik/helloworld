@@ -14,6 +14,6 @@ jobs:
             docker-compose --version
      - name: Remove old compose
        run: docker images &&
-            docker ps
+            docker ps -a
      - name: Start containers
        run: docker-compose -f docker-compose.yml up -d --build
