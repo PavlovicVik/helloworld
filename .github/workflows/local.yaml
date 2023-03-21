@@ -7,7 +7,7 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v1
      - name: List
-       run: cd /usr/local/bin &&
+       run: cd /usr/local/bin/docker-compose &&
             ls
      - name: Compose
        run: docker-compose -f docker-compose.yaml up -d
