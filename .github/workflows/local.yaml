@@ -4,11 +4,9 @@ jobs:
   docker_local_run:
     runs-on: self-hosted
     steps:
-      - name: list images
-        run: docker images
       - name: Checkout
         uses: actions/checkout@v3
-      - name: list containers
-        run: docker ps -a
+      - name: list
+        run: ls
       - name: compose
         run: docker-compose up -d
