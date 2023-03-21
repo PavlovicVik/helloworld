@@ -7,7 +7,7 @@ jobs:
       - name: list images
         run: docker images
       - name: Checkout
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
       - name: docker compose
         uses: ./docker-compose.yaml
       - name: list containers
