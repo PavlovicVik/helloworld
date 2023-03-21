@@ -1,0 +1,81 @@
+version: "3.3"
+services:
+  adapter-ie:
+    container_name: ie
+    image: "ghcr.io/ametek-dunker-iiot/edge-protocol-adapter-ie:1.17.0"
+    restart: always
+    depends_on:
+      - mqtt
+    # host mode is necessary in order to scan real networks
+    network_mode: "host"
+    environment:
+        - OI4_EDGE_MQTT_BROKER_ADDRESS=127.0.0.1
+        - OI4_EDGE_MQTT_SECURE_PORT=8889
+        - OI4_EDGE_MQTT_USERNAME=mqttuser
+        - OI4_EDGE_MQTT_PASSWORD=mqttpassword
+        - USE_UNSECURE_BROKER=False
+        - OI4_EDGE_APPLICATION_INSTANCE_NAME=IEProtocolAdapter
+        - OI4_EDGE_INFO_MANUFACTURER_URL=dunkermotoren.com
+        - BUS_DRIVER_ADAPTER=eth0
+        
+  mqtt:
+    container_name: smqtt
+    image: "ghcr.io/ametek-dunker-iiot/secure-mosquitto:1.7"
+    restart: always
+    ports:
+      - "8889:8889"
+
+  oec-registry:
+    container_name: registry
+    image: "ghcr.io/oi4/oi4-registry:0.12.1"
+    restart: always
+    links:
+      - "mqtt"
+    environment:
+        - OI4_EDGE_MQTT_BROKER_ADDRESS=mqtt
+        - OI4_EDGE_MQTT_SECURE_PORT=8889
+        - OI4_EDGE_MQTT_USERNAME=mqttuser
+        - OI4_EDGE_MQTT_PASSWORD=mqttpassword
+        - USE_UNSECURE_BROKER=False
+        - OI4_EDGE_APPLICATION_INSTANCE_NAME=OEC-Registry
+    ports:
+      - "5798:5798"
+      - "5799:5799"
+        
+
+  parameterlistprovider:
+    container_name: parameterlistprovider
+    image: "ghcr.io/ametek-dunker-iiot/edge-service-parameterlistprovider:1.4.0"
+    restart : always
+    links:
+      - "mqtt"
+    environment:
+        - OI4_EDGE_MQTT_BROKER_ADDRESS=mqtt
+        - OI4_EDGE_MQTT_SECURE_PORT=8889
+        - OI4_EDGE_MQTT_USERNAME=mqttuser
+        - OI4_EDGE_MQTT_PASSWORD=mqttpassword
+        - OI4_EDGE_APPLICATION_INSTANCE_NAME=parameterlistprovider
+        - OI4_EDGE_INFO_MANUFACTURER_URL=dunkermotoren.com
+        - PARAMETERLIST_PATH=/usr/app/parameterlists
+    volumes:
+        - /workdir/parameterlists:/usr/app/parameterlists       
+
+
+  monitor:
+    container_name: monitor
+    image: "ghcr.io/ametek-dunker-iiot/edge-app-datamonitor:1.8.0"
+    restart: always
+    depends_on:
+      - mqtt
+    links:
+      - "mqtt"
+    environment:
+        - OI4_EDGE_MQTT_BROKER_ADDRESS=mqtt
+        - OI4_EDGE_MQTT_SECURE_PORT=8889
+        - OI4_EDGE_MQTT_USERNAME=mqttuser
+        - OI4_EDGE_MQTT_PASSWORD=mqttpassword
+        - USE_UNSECURE_BROKER=False
+        - OI4_EDGE_APPLICATION_INSTANCE_NAME=DataMonitor
+        - OI4_EDGE_INFO_MANUFACTURER_URL=dunkermotoren.com
+    volumes:
+        - /workdir/datamonitor:/home/parameters
