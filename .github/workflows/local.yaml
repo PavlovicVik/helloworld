@@ -10,6 +10,6 @@ jobs:
        run: ls
      - name: Install compose
        run: docker pull aleksjej/armv7-docker-compose &&
-            sudo chmod +x /usr/local/bin/docker-compose &&
+            sudo chmod +x /usr/local/bin/docker-compose
      - name: Start containers
        run: docker run -f docker-compose.yml f39e30ccd182
