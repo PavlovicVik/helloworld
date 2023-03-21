@@ -9,4 +9,4 @@ jobs:
      - name: List
        run: ls
      - name: Compose 
-       run: docker compose 
+       run: docker compose up
