@@ -6,7 +6,9 @@ jobs:
     steps:
      - name: Checkout
        uses: actions/checkout@v1
-     - name: list
+     - name: List
        run: ls
+     - name: Install compose
+       run:  sudo apt-get install docker-compose-plugin
      - name: Start containers
        run: docker-compose -f "docker-compose.yml" up -d --build
