@@ -7,8 +7,6 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v1
      - name: List
-       run: sudo apt-get update &&
-            sudo apt-get install docker-compose-plugin &&
-            docker compose version
+       run: ls
      - name: Compose 
-       run: docker-compose -f docker-compose.yaml up -d
+       run: docker-compose up -d
