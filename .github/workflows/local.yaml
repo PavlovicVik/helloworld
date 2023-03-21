@@ -8,8 +8,6 @@ jobs:
         run: docker images
       - name: Checkout
         uses: actions/checkout@v3
-      - name: docker compose
-        uses: ./docker-compose.yaml
       - name: list containers
         run: docker ps -a
       - name: remove container
